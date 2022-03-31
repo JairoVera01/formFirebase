@@ -60,8 +60,11 @@ let enviarBtn = document.getElementById("enviarBtn");
 // /* Eventos para botones */
 // insBtn.addEventListener("click" , InsertData);
 
+
+/* Crear id para cada comentario */
+let id = 1; 
 function InsertData() {
-    set(ref(db,"Contacto/"+nombreaApellidos.value),{
+    set(ref(db,"Contacto/"+ id++ ),{
         NombresyApellidos: nombreaApellidos.value,
         CorreoElectronico: correoElectronico.value,
         Telefono: telefono.value,
