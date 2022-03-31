@@ -74,9 +74,26 @@ function crearid(){
 
 
 function InsertData() {
-    if(nombreaApellidos.value == ""){
-        
-        alert("Ingrese nombres");
+    if(nombreaApellidos.value == "" || correoElectronico.value == "" || telefono.value == "" || comentarios.value == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Todos los campos deben ser completados',
+        })
+        const nameInput = document.querySelector('input');
+
+        nameInput.addEventListener('input', () => {
+        nameInput.setCustomValidity('');
+        nameInput.checkValidity();
+        });
+
+        nameInput.addEventListener('invalid', () => {
+        if(nameInput.value === '') {
+            nameInput.setCustomValidity('Enter your username!');
+        } else {
+            nameInput.setCustomValidity('Usernames can only contain upper and lowercase letters. Try again!');
+        }
+});
     }else {
         set(ref(db,"Personas Que registraron su consula/"+ "id: "+ crearid() + " " + nombreaApellidos.value ),{
             NombresyApellidos: nombreaApellidos.value,
@@ -89,7 +106,7 @@ function InsertData() {
                 'Mensaje Enviado!',
                 'Pronto nos pondremos en contacto contigo',
                 'success'
-              )
+            )
         })
         .catch((error)=>{
             alert("Error" + error);
