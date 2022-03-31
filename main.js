@@ -62,20 +62,40 @@ let enviarBtn = document.getElementById("enviarBtn");
 
 
 /* Crear id para cada comentario */
-let id = 1; 
+
+/* ID por fecha + horas (unico e irrepetible) */
+function crearid(){
+    let id = new Date().getTime();
+    return id;
+}
+
+/* Crear Validaciones */
+
+
+
 function InsertData() {
-    set(ref(db,"Contacto/"+ id++ ),{
-        NombresyApellidos: nombreaApellidos.value,
-        CorreoElectronico: correoElectronico.value,
-        Telefono: telefono.value,
-        Comentarios: comentarios.value,
-    })
-    .then(()=>{
-        alert("Data Guardada")
-    })
-    .catch((error)=>{
-        alert("Error" + error)
-    })
+    if(nombreaApellidos.value == ""){
+        
+        alert("Ingrese nombres");
+    }else {
+        set(ref(db,"Personas Que registraron su consula/"+ "id: "+ crearid() + " " + nombreaApellidos.value ),{
+            NombresyApellidos: nombreaApellidos.value,
+            CorreoElectronico: correoElectronico.value,
+            Telefono: telefono.value,
+            Comentarios: comentarios.value
+        })
+        .then(()=>{
+            Swal.fire(
+                'Mensaje Enviado!',
+                'Pronto nos pondremos en contacto contigo',
+                'success'
+              )
+        })
+        .catch((error)=>{
+            alert("Error" + error);
+        })
+    }
+    
 }
 enviarBtn.addEventListener("click" , InsertData);
 
