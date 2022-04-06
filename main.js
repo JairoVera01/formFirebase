@@ -80,20 +80,20 @@ function InsertData() {
             title: 'Oops...',
             text: 'Todos los campos deben ser completados',
         })
-        const nameInput = document.querySelector('input');
+        //         const nameInput = document.querySelector('input');
 
-        nameInput.addEventListener('input', () => {
-        nameInput.setCustomValidity('');
-        nameInput.checkValidity();
-        });
+        //         nameInput.addEventListener('input', () => {
+        //         nameInput.setCustomValidity('');
+        //         nameInput.checkValidity();
+        //         });
 
-        nameInput.addEventListener('invalid', () => {
-        if(nameInput.value === '') {
-            nameInput.setCustomValidity('Enter your username!');
-        } else {
-            nameInput.setCustomValidity('Usernames can only contain upper and lowercase letters. Try again!');
-        }
-});
+        //         nameInput.addEventListener('invalid', () => {
+        //         if(nameInput.value === '') {
+        //             nameInput.setCustomValidity('Enter your username!');
+        //         } else {
+        //             nameInput.setCustomValidity('Usernames can only contain upper and lowercase letters. Try again!');
+        //         }
+        // });
     }else {
         set(ref(db,"Personas Que registraron su consula/"+ "id: "+ crearid() + " " + nombreaApellidos.value ),{
             NombresyApellidos: nombreaApellidos.value,
